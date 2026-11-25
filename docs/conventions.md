@@ -1,12 +1,12 @@
 # Conventions
 
-Human-facing notes. Files in `docs/` are **not** auto-loaded into Claude's context.
+Human-facing notes. Files in `docs/` are not automatically loaded into agent context.
 
 ## Which primitive do I reach for?
 
 | I want…                                             | Use a…   | Lives in…            |
 |-----------------------------------------------------|----------|----------------------|
-| Claude to decide *when* to apply it, by description | skill    | `skills/<name>/SKILL.md` |
+| An agent to decide *when* to apply it, by description | skill    | `skills/<name>/SKILL.md` |
 | To invoke it explicitly by name (`/toolkit:foo`)    | command  | `commands/foo.md` (or a skill with `disable-model-invocation: true`) |
 | Its own context window and/or restricted tool set   | subagent | `agents/foo.md`      |
 | Something to run automatically on an event          | hook     | `hooks/hooks.json`   |
@@ -26,11 +26,13 @@ skills/<name>/
 ```
 
 - Keep `description` trigger-rich — it helps compatible agents decide when to load the skill.
-- `allowed-tools` pre-approves tools; it does not restrict them. Read-only tools only.
+- In Claude Code, `allowed-tools` pre-approves tools; it does not restrict them. Read-only tools only.
 - Every directory under `skills/` ships to installers. The copy-to-start template lives in
   `templates/skill/`, outside the plugin.
 
 ## Hooks
+
+The cost-tracking hook is for Claude Code. The Codex compatibility manifest explicitly disables hook auto-discovery.
 
 - A hook must never break a session: exit 0 on its own errors, keep stdout empty unless the
   event expects output, and finish well inside its `timeout`. Exit 2 from a `Stop` hook
@@ -42,7 +44,7 @@ skills/<name>/
 
 1. Each change adds its lines under `## [Unreleased]` in `CHANGELOG.md`.
 2. Release commit: rename that heading to `## [X.Y.Z] - YYYY-MM-DD`, bump `version` in
-   `plugins/toolkit/.claude-plugin/plugin.json`, run the tests listed in `CLAUDE.md`.
+   both `plugins/toolkit/.claude-plugin/plugin.json` and `plugins/toolkit/.codex-plugin/plugin.json`, and run the checks listed in `AGENTS.md`.
 3. `claude plugin tag plugins/toolkit --push` creates and pushes `toolkit--vX.Y.Z`.
 
 ## Scope

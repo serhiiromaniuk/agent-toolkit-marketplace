@@ -18,31 +18,43 @@ This repo is **both** a marketplace (it lists plugins) and the home of those plu
 claude plugin update toolkit@serhii   # then restart Claude Code
 ```
 
-## Install shared skills for Codex
+## Install for Codex
 
-From a local clone, choose the skills to copy into `${CODEX_HOME:-~/.codex}/skills`:
+Codex can install the same toolkit through its native plugin marketplace. From a local clone:
 
 ```bash
-./scripts/install-codex-skills.sh glab verify-before-done
-./scripts/install-codex-skills.sh structured-technical-competency-interview
+codex plugin marketplace add /absolute/path/to/claude-marketplace
+codex plugin add toolkit@serhii
 ```
 
-The installer refuses to overwrite an existing skill. To update a copy, review and remove the
-old copy first, then run it again. Changes in the clone do not update installed copies.
-The skills become available in a subsequent Codex turn. Invoke a skill by name, such as
-`$structured-technical-competency-interview`, or describe the task so Codex can select it.
+Alternatively, after these changes are pushed, add the GitHub marketplace with
+`codex plugin marketplace add serhiiromaniuk/claude-marketplace` and then install
+`toolkit@serhii`. Restart the app or start a new session to use newly installed skills.
+The marketplace can also be opened in the desktop app's Plugins directory. See the
+[official plugin packaging guide](https://developers.openai.com/plugins/build/plugins).
 
-`assessment-report` and `agent-readiness` can also be copied; install both for the latter's
-optional branded report. The agent-readiness bundled loop and agent templates are Claude Code
-specific, even though its audit can be used by other agents. `claude-in-chrome`, Claude slash
-commands, hooks and the status line require Claude-specific integrations and are not installed
-by this script. A skill is a reusable file, not persistent ChatGPT instructions or memory.
+The toolkit installs as a bundle: it contains all listed skills, including the Claude-only
+`claude-in-chrome` reference. Use that reference only with its Claude MCP integration. The
+agent-readiness audit is portable, but its bundled loop and agent templates target Claude Code.
+Claude slash commands and status line are Claude-specific; the Codex manifest explicitly
+disables the toolkit's Claude cost-tracking hook. Installing the plugin does not install
+individual skills separately or make them persistent ChatGPT instructions or memory.
+
+To install only one skill, ask Codex to use `$skill-installer` with the repository and the
+specific `plugins/toolkit/skills/<skill-name>` path after the changes are available on GitHub,
+or copy the skill directory to a supported Codex skills directory. See the
+[OpenAI skill installation guidance](https://developers.openai.com/api/reference/cli).
+
+To invoke the plugin skill, ask Codex to use `$toolkit:structured-technical-competency-interview`
+or describe the interview task. A separately installed skill uses the unprefixed
+`$structured-technical-competency-interview` name. For Claude Code, use
+`/toolkit:structured-technical-competency-interview`.
 
 ## What you get
 
 ### Skills
 
-Most auto-trigger by description; each is also invocable as `/toolkit:<name>`.
+Skills can be selected by description. In Claude Code, each is also invocable as `/toolkit:<name>`.
 
 | Skill | What it does |
 |---|---|
@@ -53,14 +65,14 @@ Most auto-trigger by description; each is also invocable as `/toolkit:<name>`.
 | **structured-technical-competency-interview** | Builds structured, level-calibrated DevOps, SRE, platform and infrastructure interviews, practical simulations and evidence-based scorecards. |
 | **verify-before-done** | Blocks "done / fixed / passing" claims that aren't backed by a command run in the current message — gate function, per-claim evidence table, rationalization guards. |
 
-### Commands
+### Claude Code commands
 
 | Command | What it does |
 |---|---|
 | `/toolkit:cost-report [csv\|status\|backfill\|reprice]` | Local token-spend report by day, project, model and session, from the cost-tracker database. |
 | `/toolkit:statusline [preview\|install\|uninstall]` | A two-row, width-aware status line: model and effort, context bar, 5-hour and weekly limits with reset countdowns, cost, git, AWS profile (and the caveman mode when that plugin is in use). `install` asks before replacing an existing status line and backs it up. |
 
-### Hooks
+### Claude Code hooks
 
 | Event | What it does |
 |---|---|
@@ -78,12 +90,12 @@ and `make` (agent-readiness loop templates; their tests also need `jq`).
 .claude-plugin/marketplace.json   # marketplace manifest — lists the plugins below
 plugins/
   toolkit/                        # the general-purpose plugin
-    .claude-plugin/plugin.json    # plugin manifest (version lives here)
+    .claude-plugin/plugin.json    # Claude plugin manifest
+    .codex-plugin/plugin.json     # Codex compatibility manifest (hooks disabled)
     skills/                       # auto-discovered skills (one dir each, SKILL.md)
     commands/                     # slash commands (/toolkit:<name>)
     hooks/                        # hooks.json + the cost-tracker it runs
     statusline/                   # status line script (installed by /toolkit:statusline)
-scripts/install-codex-skills.sh  # opt-in installer for shared skills
 AGENTS.md                        # shared repository guidance, imported by CLAUDE.md
 templates/skill/                  # copy-to-start skill template (not shipped in the plugin)
 docs/                             # human-facing notes, NOT loaded into Claude's context
@@ -95,7 +107,7 @@ docs/                             # human-facing notes, NOT loaded into Claude's
    (`name`, a trigger-rich `description`, optional `allowed-tools`).
 2. Bundle helpers in `scripts/` and extra docs in `reference/` if needed — resolve bundled
    files relative to the installed skill directory, including outside Claude Code.
-3. Add a `CHANGELOG.md` entry under Unreleased; bump the plugin version when releasing.
+3. Add a `CHANGELOG.md` entry under Unreleased; bump both plugin manifest versions together when releasing.
 4. `claude plugin validate . --strict && claude plugin validate plugins/toolkit --strict`.
 
 ## Conventions

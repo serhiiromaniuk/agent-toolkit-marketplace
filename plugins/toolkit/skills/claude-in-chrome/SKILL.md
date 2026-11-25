@@ -1,10 +1,12 @@
 ---
 name: claude-in-chrome
-description: Browser automation skill for Chrome via MCP. Use when user asks to navigate, click, fill forms, scrape content, take screenshots, debug web pages, or automate browser interactions. Handles navigation, DOM interaction, screenshots, GIF recording, console/network debugging.
+description: Automate Chrome with the Claude in Chrome MCP integration. Use when the user requests that specific integration for navigation, page interaction, screenshots, recording, or debugging; other browser tools require their own workflows.
 # Pre-approves page reading and tab housekeeping only. Clicks, typing, form fills, JS and uploads still prompt,
 # because page content is untrusted and can carry prompt injection.
 allowed-tools: mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__tabs_close_mcp, mcp__claude-in-chrome__read_page, mcp__claude-in-chrome__find, mcp__claude-in-chrome__get_page_text, mcp__claude-in-chrome__read_console_messages, mcp__claude-in-chrome__read_network_requests
 ---
+
+This skill requires the Claude in Chrome MCP integration. Other agents should use their own available browser tools instead.
 
 # Claude in Chrome MCP Skill
 

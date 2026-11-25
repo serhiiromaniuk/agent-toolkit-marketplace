@@ -3,15 +3,17 @@
 All notable changes to the `toolkit` plugin. Versions follow
 [Semantic Versioning](https://semver.org/); dates are YYYY-MM-DD.
 
-## [Unreleased]
+## [1.3.0] - 2026-11-26
 
 ### Added
 
+- Native Codex marketplace support with a compatibility manifest and Claude hook disabled.
 - Structured Technical Competency Interview skill for level-calibrated DevOps, SRE, platform and infrastructure interviews.
-- Shared repository guidance and an opt-in Codex installer for portable skills; preserve the Claude marketplace and its native features.
+- Shared repository guidance for Claude Code and Codex; preserve the Claude marketplace and its native features.
 
 ### Changed
 
+- Use native Codex marketplace installation instead of a custom skill-copy script.
 - Resolve shared skill assets from their installed skill directories and document Claude-specific features.
 
 ## [1.2.1] - 2026-10-19

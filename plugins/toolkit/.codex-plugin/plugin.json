@@ -1,0 +1,14 @@
+{
+  "name": "toolkit",
+  "version": "1.3.0",
+  "description": "Reusable interview, engineering, and assessment skills.",
+  "skills": "./skills/",
+  "hooks": "./.codex-plugin/no-hooks.json",
+  "interface": {
+    "displayName": "Toolkit",
+    "shortDescription": "Reusable engineering and interview skills",
+    "longDescription": "Reusable workflows for structured interviews, engineering assessments, GitLab, and agent readiness.",
+    "developerName": "Serhii Romaniuk",
+    "category": "Productivity"
+  }
+}
