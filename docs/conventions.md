@@ -21,11 +21,11 @@ runs-on-an-event → hook.*
 skills/<name>/
   SKILL.md        # required. frontmatter: name, description, [allowed-tools]
   reference/      # optional. docs the skill pulls in on demand
-  scripts/        # optional. helpers; reference via ${CLAUDE_PLUGIN_ROOT}/skills/<name>/scripts/
+  scripts/        # optional. helpers; resolve relative to the installed skill directory
   assets/         # optional. templates, images, etc.
 ```
 
-- Keep `description` trigger-rich — it's how Claude decides to load the skill.
+- Keep `description` trigger-rich — it helps compatible agents decide when to load the skill.
 - `allowed-tools` pre-approves tools; it does not restrict them. Read-only tools only.
 - Every directory under `skills/` ships to installers. The copy-to-start template lives in
   `templates/skill/`, outside the plugin.

@@ -183,10 +183,8 @@ glab api "projects/:id" --include 2>&1 | grep -i ratelimit
 
 **Fix:**
 ```bash
-# Inside Claude Code: source in the same Bash call (every call is a new shell), using the
-# absolute path from the glab SKILL.md — its ${CLAUDE_PLUGIN_ROOT} is expanded when the
-# skill loads, but not in this file, and the variable is not set in the Bash environment.
-source "<plugin dir>/skills/glab/scripts/glab-helpers.sh" && gl-watch
+# In an agent shell: source in the same call, using the absolute path to this skill.
+source "<installed-glab-skill>/scripts/glab-helpers.sh" && gl-watch
 
 # In your own shell: source the installed plugin copy (newest version)
 source "$(find "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/plugins/cache/serhii/toolkit" \

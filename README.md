@@ -1,10 +1,10 @@
 # claude-marketplace
 
-Personal Claude Code plugin marketplace — my skills, slash commands, hooks, and setup guidelines, packaged as an installable plugin.
+Personal agent skill collection and Claude Code plugin marketplace — shared skills plus Claude-specific commands, hooks, and setup guidelines.
 
 This repo is **both** a marketplace (it lists plugins) and the home of those plugins.
 
-## Install
+## Install for Claude Code
 
 ```bash
 # 1. Add this marketplace
@@ -17,6 +17,26 @@ This repo is **both** a marketplace (it lists plugins) and the home of those plu
 /plugin marketplace update serhii
 claude plugin update toolkit@serhii   # then restart Claude Code
 ```
+
+## Install shared skills for Codex
+
+From a local clone, choose the skills to copy into `${CODEX_HOME:-~/.codex}/skills`:
+
+```bash
+./scripts/install-codex-skills.sh glab verify-before-done
+./scripts/install-codex-skills.sh structured-technical-competency-interview
+```
+
+The installer refuses to overwrite an existing skill. To update a copy, review and remove the
+old copy first, then run it again. Changes in the clone do not update installed copies.
+The skills become available in a subsequent Codex turn. Invoke a skill by name, such as
+`$structured-technical-competency-interview`, or describe the task so Codex can select it.
+
+`assessment-report` and `agent-readiness` can also be copied; install both for the latter's
+optional branded report. The agent-readiness bundled loop and agent templates are Claude Code
+specific, even though its audit can be used by other agents. `claude-in-chrome`, Claude slash
+commands, hooks and the status line require Claude-specific integrations and are not installed
+by this script. A skill is a reusable file, not persistent ChatGPT instructions or memory.
 
 ## What you get
 
@@ -62,6 +82,8 @@ plugins/
     commands/                     # slash commands (/toolkit:<name>)
     hooks/                        # hooks.json + the cost-tracker it runs
     statusline/                   # status line script (installed by /toolkit:statusline)
+scripts/install-codex-skills.sh  # opt-in installer for shared skills
+AGENTS.md                        # shared repository guidance, imported by CLAUDE.md
 templates/skill/                  # copy-to-start skill template (not shipped in the plugin)
 docs/                             # human-facing notes, NOT loaded into Claude's context
 ```
@@ -70,9 +92,9 @@ docs/                             # human-facing notes, NOT loaded into Claude's
 
 1. `cp -r templates/skill plugins/toolkit/skills/<skill-name>` and fill in `SKILL.md`
    (`name`, a trigger-rich `description`, optional `allowed-tools`).
-2. Bundle helpers in `scripts/` and extra docs in `reference/` if needed — reference bundled
-   files via `${CLAUDE_PLUGIN_ROOT}`, never hardcoded paths.
-3. Bump `version` in `plugins/toolkit/.claude-plugin/plugin.json` and add a `CHANGELOG.md` entry.
+2. Bundle helpers in `scripts/` and extra docs in `reference/` if needed — resolve bundled
+   files relative to the installed skill directory, including outside Claude Code.
+3. Add a `CHANGELOG.md` entry under Unreleased; bump the plugin version when releasing.
 4. `claude plugin validate . --strict && claude plugin validate plugins/toolkit --strict`.
 
 ## Conventions

@@ -24,8 +24,10 @@ Trigger on requests like: "do a gap/risk analysis of X", "audit this AWS account
 
 ## Rendering (canonical, copy-paste)
 
+Set `SK` to the absolute directory containing this `SKILL.md` in the current installation. In Claude Code, `${CLAUDE_PLUGIN_ROOT}/skills/assessment-report` is one way to locate it.
+
 ```bash
-SK="${CLAUDE_PLUGIN_ROOT}/skills/assessment-report"
+SK="<absolute-path-to-installed-assessment-report-skill>"
 node "$SK/assets/render.mjs" "report.html" "report.pdf" "My Report · Confidential"
 pdfinfo report.pdf | grep -i pages
 ```

@@ -39,7 +39,7 @@ Practical DevOps guidance for `glab` operations: pipelines, MRs, releases, and G
 | GitLab keywords | pipeline, job, runner, MR, merge request, CI/CD, `.gitlab-ci.yml`, glab |
 | Action verbs + context | view, check, debug, monitor, retry, cancel, trace |
 
-## Quick Start with $ARGUMENTS
+## Quick Start
 
 If invoked with a URL argument, parse and query immediately:
 
@@ -142,12 +142,12 @@ glab auth login --hostname gitlab.example.com
 
 ### Use the Helper Functions
 
-Each Bash tool call starts a fresh shell, so source the helpers **in the same call** that uses them.
+Resolve the absolute path of the directory containing this SKILL.md and set `SK` to it. In Claude Code, `${CLAUDE_PLUGIN_ROOT}/skills/glab` is one way to locate it. Each Bash tool call starts a fresh shell, so source the helpers **in the same call** that uses them.
 Do not add anything to the user's `~/.bashrc` / `~/.zshrc`.
 
 ```bash
-source "${CLAUDE_PLUGIN_ROOT}/skills/glab/scripts/glab-helpers.sh" && gl-failed-jobs 123456
-source "${CLAUDE_PLUGIN_ROOT}/skills/glab/scripts/glab-helpers.sh" && gl-help
+SK="<absolute-path-to-installed-glab-skill>"; source "$SK/scripts/glab-helpers.sh" && gl-failed-jobs 123456
+SK="<absolute-path-to-installed-glab-skill>"; source "$SK/scripts/glab-helpers.sh" && gl-help
 ```
 
 - `gl-watch`, `gl-watch-pipeline`, `gl-watch-jobs`, `gl-run-watch` and `gl-retry-watch` loop until

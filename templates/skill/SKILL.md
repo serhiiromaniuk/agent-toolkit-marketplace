@@ -1,6 +1,6 @@
 ---
 name: <skill-name>
-description: <one sentence — WHAT it does and WHEN to use it. This is how Claude decides to load the skill, so make it trigger-rich with concrete keywords.>
+description: <one sentence — WHAT it does and WHEN to use it. This helps compatible agents decide when to load the skill, so make it trigger-rich with concrete keywords.>
 # allowed-tools: Read, Grep, Bash(git status *)   # optional — PRE-APPROVES these tools while the skill is active; it does not restrict others. Keep it to read-only tools.
 # disable-model-invocation: true                   # optional — only the user can invoke it (/toolkit:<skill-name>)
 ---
@@ -20,5 +20,5 @@ description: <one sentence — WHAT it does and WHEN to use it. This is how Clau
 
 ## Notes
 
-- Bundle helpers in `scripts/` and reference them as `${CLAUDE_PLUGIN_ROOT}/skills/<skill-name>/scripts/...` (never hardcode paths).
-- Put extra docs Claude should load on demand in `reference/`.
+- Bundle helpers in `scripts/`; resolve them relative to the installed skill directory. Claude Code may use `${CLAUDE_PLUGIN_ROOT}`, but portable skills must not require it.
+- Put extra docs the agent should load on demand in `reference/`.

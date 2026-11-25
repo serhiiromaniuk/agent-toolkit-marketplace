@@ -43,7 +43,7 @@ apply-mode (on-the-fly vs. postponed) before writing to their repo.
 ### Optional branded render (only if asked)
 Reuse the sibling skill's engine — don't rebuild it. The 7 pillars are the radar axes, the
 composite is the gauge. The engine lives at
-`${CLAUDE_PLUGIN_ROOT}/skills/assessment-report`: build `.agent-readiness/report.html` from its
+the installed `assessment-report` skill directory (a sibling if both were installed together): build `.agent-readiness/report.html` from its
 `assets/template.html` following its `assets/STYLE.md`, then render it to
 `.agent-readiness/report.pdf` and verify a couple of pages **exactly as the `assessment-report`
 SKILL.md's render step describes** — follow that file, not a copy of its command here, so the
@@ -56,9 +56,10 @@ two never drift.
 Input is the graded gaps from Mode 1 (read `.agent-readiness/score.json`). Prioritize on
 **Impact × Effort** — usually P2 (memory) / P3 (loop) / P4 (gates) give the most maturity per hour.
 The reference implementation to install from is bundled with this skill (domain-free, drop-in)
-at `${CLAUDE_PLUGIN_ROOT}/skills/agent-readiness/templates` — copy from there; a bare
-`templates/` path would resolve against the target repo, not this skill. Every
-`templates/...` path below is relative to `${CLAUDE_PLUGIN_ROOT}/skills/agent-readiness/`.
+in the `templates/` directory next to this SKILL.md — resolve its absolute path from the
+installed skill directory, not the target repo. Every `templates/...` path below is relative
+to that skill directory. The bundled loop, agents and commands target Claude Code; for another
+agent, audit them as examples and adapt them only if the user requests that runtime.
 
 **Ask which apply-mode**, then:
 

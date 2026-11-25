@@ -3,6 +3,16 @@
 All notable changes to the `toolkit` plugin. Versions follow
 [Semantic Versioning](https://semver.org/); dates are YYYY-MM-DD.
 
+## [Unreleased]
+
+### Added
+
+- Shared repository guidance and an opt-in Codex installer for portable skills; preserve the Claude marketplace and its native features.
+
+### Changed
+
+- Resolve shared skill assets from their installed skill directories and document Claude-specific features.
+
 ## [1.2.1] - 2026-10-19
 
 ### Fixed — agent-readiness `loop.sh`
