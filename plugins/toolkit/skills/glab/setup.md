@@ -128,12 +128,12 @@ unset glab_helpers
 
 **Option B — a clone of the repository.** Clone once, then add one line to `~/.bashrc` or `~/.zshrc`:
 ```bash
-git clone https://github.com/serhiiromaniuk/claude-marketplace.git ~/src/claude-marketplace
+git clone https://github.com/serhiiromaniuk/agent-toolkit-marketplace.git ~/src/agent-toolkit-marketplace
 
 # in ~/.bashrc or ~/.zshrc
-source ~/src/claude-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh
+source ~/src/agent-toolkit-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh
 ```
-Run `git -C ~/src/claude-marketplace pull` to update.
+Run `git -C ~/src/agent-toolkit-marketplace pull` to update.
 
 Then reload your shell (`exec "$SHELL"`) or source the file directly.
 
@@ -142,7 +142,7 @@ Then reload your shell (`exec "$SHELL"`) or source the file directly.
 # Fish doesn't directly source bash scripts
 # Create a wrapper or use bass plugin
 # https://github.com/edc/bass
-bass source ~/src/claude-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh
+bass source ~/src/agent-toolkit-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh
 ```
 
 ### Verify Helpers are Loaded
@@ -169,7 +169,7 @@ source "$(find "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/plugins/cache/serhii/toolkit
 ```bash
 #!/bin/bash
 # At the top of your script: source your clone (or set GLAB_HELPERS to the path)
-source "${GLAB_HELPERS:-$HOME/src/claude-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh}"
+source "${GLAB_HELPERS:-$HOME/src/agent-toolkit-marketplace/plugins/toolkit/skills/glab/scripts/glab-helpers.sh}"
 
 # Now you can use helpers
 gl-wait 30 && echo "Pipeline passed!"

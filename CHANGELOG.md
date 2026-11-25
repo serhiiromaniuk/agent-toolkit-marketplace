@@ -3,6 +3,12 @@
 All notable changes to the `toolkit` plugin. Versions follow
 [Semantic Versioning](https://semver.org/); dates are YYYY-MM-DD.
 
+## [1.3.1] - 2026-11-26
+
+### Changed
+
+- Update repository URLs and installation examples for the agent-toolkit-marketplace rename.
+
 ## [1.3.0] - 2026-11-26
 
 ### Added

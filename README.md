@@ -1,4 +1,4 @@
-# claude-marketplace
+# agent-toolkit-marketplace
 
 Personal agent skill collection and Claude Code plugin marketplace — shared skills plus Claude-specific commands, hooks, and setup guidelines.
 
@@ -8,7 +8,7 @@ This repo is **both** a marketplace (it lists plugins) and the home of those plu
 
 ```bash
 # 1. Add this marketplace
-/plugin marketplace add serhiiromaniuk/claude-marketplace
+/plugin marketplace add serhiiromaniuk/agent-toolkit-marketplace
 
 # 2. Install the toolkit plugin
 /plugin install toolkit@serhii
@@ -23,12 +23,12 @@ claude plugin update toolkit@serhii   # then restart Claude Code
 Codex can install the same toolkit through its native plugin marketplace. From a local clone:
 
 ```bash
-codex plugin marketplace add /absolute/path/to/claude-marketplace
+codex plugin marketplace add /absolute/path/to/agent-toolkit-marketplace
 codex plugin add toolkit@serhii
 ```
 
-Alternatively, after these changes are pushed, add the GitHub marketplace with
-`codex plugin marketplace add serhiiromaniuk/claude-marketplace` and then install
+Alternatively, add the GitHub marketplace with
+`codex plugin marketplace add serhiiromaniuk/agent-toolkit-marketplace` and then install
 `toolkit@serhii`. Restart the app or start a new session to use newly installed skills.
 The marketplace can also be opened in the desktop app's Plugins directory. See the
 [official plugin packaging guide](https://developers.openai.com/plugins/build/plugins).
@@ -41,7 +41,7 @@ disables the toolkit's Claude cost-tracking hook. Installing the plugin does not
 individual skills separately or make them persistent ChatGPT instructions or memory.
 
 To install only one skill, ask Codex to use `$skill-installer` with the repository and the
-specific `plugins/toolkit/skills/<skill-name>` path after the changes are available on GitHub,
+specific `plugins/toolkit/skills/<skill-name>` path,
 or copy the skill directory to a supported Codex skills directory. See the
 [OpenAI skill installation guidance](https://developers.openai.com/api/reference/cli).
 
