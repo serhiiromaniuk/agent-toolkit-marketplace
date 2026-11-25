@@ -50,6 +50,7 @@ Most auto-trigger by description; each is also invocable as `/toolkit:<name>`.
 | **assessment-report** | Turns findings into a scored, branded assessment (gap/risk, security, cost, due-diligence, architecture, post-incident) with an executive dashboard, rendered to PDF. Ships synthetic examples only. |
 | **claude-in-chrome** | Reference for browser automation via the claude-in-chrome MCP (tabs, navigation, DOM, forms, screenshots, console/network debugging, GIF recording). |
 | **glab** | GitLab CLI (`glab` ≥ 1.54) DevOps workflows — pipelines, merge requests, releases, CI/CD debugging — plus tested shell helpers. |
+| **structured-technical-competency-interview** | Builds structured, level-calibrated DevOps, SRE, platform and infrastructure interviews, practical simulations and evidence-based scorecards. |
 | **verify-before-done** | Blocks "done / fixed / passing" claims that aren't backed by a command run in the current message — gate function, per-claim evidence table, rationalization guards. |
 
 ### Commands

@@ -7,6 +7,7 @@ All notable changes to the `toolkit` plugin. Versions follow
 
 ### Added
 
+- Structured Technical Competency Interview skill for level-calibrated DevOps, SRE, platform and infrastructure interviews.
 - Shared repository guidance and an opt-in Codex installer for portable skills; preserve the Claude marketplace and its native features.
 
 ### Changed
